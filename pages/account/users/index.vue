@@ -134,7 +134,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserManagerStore } from '../../stores/storeUserManager'
+import { useUserManagerStore } from '../../../stores/storeUserManager'
 import { storeToRefs } from 'pinia'
 
 definePageMeta({
