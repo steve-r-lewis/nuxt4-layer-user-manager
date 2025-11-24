@@ -30,6 +30,7 @@ export default defineNuxtConfig({
   devtools: {enabled: true},
 
   extends: [
-    '@monorepo/authorisation' // Inherits Auth + Authorisation layers
+    // '@monorepo/authorisation' // Inherits Auth + Authorisation layers
+    '@monorepo/authorisation'
   ]
 })
