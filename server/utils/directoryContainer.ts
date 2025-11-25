@@ -35,25 +35,6 @@
  * Initial creation and release of directoryContainer.ts
  *
  * ================================================================================
- */#
-
-
-
-/**
- * ================================================================================
- *
- * @project:    holistic-massage-therapy
- * @version:    1.2.0
- * @createDate: 2025 Nov 25
- * @author:     Steve R Lewis
- *
- * ================================================================================
- *
- * @description:
- * Service Locator for DirectoryService.
- * UPDATE
- *
- * ================================================================================
  */
 
 import { DirectoryService } from '../services/DirectoryService'
@@ -70,30 +51,6 @@ export const getDirectoryService = (): DirectoryService => {
     const inviteRepo = getInvitationRepository();
 
     _directoryServiceInstance = new DirectoryService(userRepo, policyRepo, inviteRepo);
-  }
-  return _directoryServiceInstance;
-}
-
-
-
-
-
-
-import { DirectoryService } from '../services/DirectoryService'
-
-// Note: getUserRepository and getPolicyRepository are auto-imported
-// from ~/server/utils/appContainer.ts
-
-let _directoryServiceInstance: DirectoryService | null = null;
-
-export const getDirectoryService = (): DirectoryService => {
-  if (!_directoryServiceInstance) {
-    // Get dependencies from the Global Container
-    const userRepo = getUserRepository();
-    const policyRepo = getPolicyRepository();
-
-    // Inject them
-    _directoryServiceInstance = new DirectoryService(userRepo, policyRepo);
   }
   return _directoryServiceInstance;
 };
