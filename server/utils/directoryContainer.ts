@@ -3,7 +3,7 @@
  *
  * @project:    @monorepo/user-manager
  * @file:       ~/layers/user-manager/server/utils/directoryContainer.ts
- * @version:    1.3.0
+ * @version:    1.4.0
  * @createDate: 2025 Nov 21
  * @createTime: 23:58
  * @author:     Steve R Lewis
@@ -20,6 +20,9 @@
  * ================================================================================
  *
  * @notes: Revision History
+ *
+ * V1.4.0, 20251125-23:29
+ * Explicitly injects InvitationRepository to fix 500 error.
  *
  * V1.3.0, 20251124-19:54
  * Injects InvitationRepository.
@@ -40,17 +43,18 @@
 import { DirectoryService } from '../services/DirectoryService'
 
 // Auto-imported from ~/server/utils/appContainer.ts
-// getUserRepository, getPolicyRepository, getInvitationRepository
 
 let _directoryServiceInstance: DirectoryService | null = null;
 
 export const getDirectoryService = (): DirectoryService => {
   if (!_directoryServiceInstance) {
+    // 1. Get all 3 dependencies
     const userRepo = getUserRepository();
     const policyRepo = getPolicyRepository();
-    const inviteRepo = getInvitationRepository();
+    const inviteRepo = getInvitationRepository(); // <--- Critical: Must get this
 
+    // 2. Inject all 3 into the service
     _directoryServiceInstance = new DirectoryService(userRepo, policyRepo, inviteRepo);
   }
   return _directoryServiceInstance;
-};
+}
