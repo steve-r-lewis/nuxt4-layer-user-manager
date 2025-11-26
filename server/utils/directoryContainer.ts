@@ -42,13 +42,14 @@
 
 import { DirectoryService } from '../services/DirectoryService'
 
-// Auto-imported from ~/server/utils/appContainer.ts
+// Note: getUserRepository, getPolicyRepository, and getInvitationRepository
+// are auto-imported from ~/server/utils/appContainer.ts because they are in server/utils
 
 let _directoryServiceInstance: DirectoryService | null = null;
 
 export const getDirectoryService = (): DirectoryService => {
   if (!_directoryServiceInstance) {
-    // 1. Get all 3 dependencies
+    // 1. Get all 3 dependencies from the Global Container
     const userRepo = getUserRepository();
     const policyRepo = getPolicyRepository();
     const inviteRepo = getInvitationRepository(); // <--- Critical: Must get this
